@@ -1,0 +1,66 @@
+<div class="row month-calendar__container">
+    <div class="col-sm-8">
+        <div class="">
+            <div class="row p-3 flex flex-items-vcenter white purple-text">
+                <div class="col-sm-1">
+                    <span class="fa fa-chevron-left a-cursor-pointer" (click)="gotoLastMonth()"></span>
+                </div>
+                <div class="col-sm text-sm-center">
+                    <h3>{{getDateInFormat(currMonth, 'MMM - YYYY')}}</h3>                
+                </div>
+                <div class="col-sm-1 text-sm-right ">
+                    <span class="fa fa-chevron-right a-cursor-pointer" (click)="gotoNextMonth()"></span>
+                </div>
+            </div>
+            <div class="row grey lighten-4 calendar__days-header">
+                <div class="col-sm text-sm-center p-2" *ngFor="let day of weekArr">
+                    <div class="day-name" > {{getDateInFormat(day, 'ddd')}} </div>
+                </div>
+            </div>
+
+            <div class="row" *ngFor="let week of monthArr; let i = index;">
+                <div class="col-sm pl-0 month-cal__date flex flex-end-end" (click)="selectDate(day)" *ngFor="let day of week" [class.lightgrey]="isBeforeToday(day)">
+                    <!--<a href="javascript:void(0)"   class="" >-->
+                    
+                        <i class="fa fa-plus add-event" (click)="openEventEditor(day)" [class.hidden-sm-up]="isBeforeToday(day)" ></i>
+                        <span class="event-indicator" *ngIf="getEventsByDate(day).length"></span>
+                        <span class="month-date" >{{getDateInFormat(day, 'D')}}</span>
+                    <!--</a>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="col-sm-4 secondary-color">
+        <div class="row">
+            <div class="col-sm-12 a-pad-left-30 a-pad-right-30 pt-2">
+                <h3 class="h3-responsive mb-0 white-text">{{getDateInFormat(selectedDate, 'DD/MM/YYYY')}}</h3>
+                <div class="day-events mt-2 px-0">
+                    <div class="panel-group mb-1" *ngFor="let eve of getEventsByDate(selectedDate); let i = index">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title flex flex-space-between">
+                                    <a class="white-text day-event__heading" data-toggle="collapse" href="#collapse{{i}}">
+                                        {{getDateInFormat(eve.startTime, 'hh:mm a')}} - {{eve.title}}
+                                    </a>
+                                    <span class="fa">+</span>
+                                </h4>
+                            </div>
+                            <div id="collapse{{i}}" class="panel-collapse collapse">
+                                <div class="panel-body">{{eve.description}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="isEventEditorVisible">
+    <event-editor (onHideModal)="isEventEditorVisible = false" [isModalShown]="isEventEditorVisible" [eventDate]="eventTime" (onAddEvent)="onAddEvent($event)"></event-editor>
+</ng-container>
+

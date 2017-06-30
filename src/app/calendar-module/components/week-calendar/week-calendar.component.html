@@ -1,0 +1,52 @@
+<div class="calendar__header">
+    <div class="">
+        <div class="calendar__header--fixed">
+            <div class="row p-3 flex flex-items-vcenter white purple-text">
+                <div class="col-sm-1">
+                    <span class="fa fa-chevron-left a-cursor-pointer" (click)="gotoLastWeek()"></span>
+                </div>
+                <div class="col-sm text-sm-center">
+                    <h3>{{getDateInFormat(currWeekDay, 'MMM - YYYY')}}</h3>                
+                </div>
+                <div class="col-sm-1 text-sm-right ">
+                    <span class="fa fa-chevron-right a-cursor-pointer" (click)="gotoNextWeek()"></span>
+                </div>
+            </div>
+            <div class="row grey lighten-4 calendar__days-header">
+                <div class="col-sm px-0 flex flex-center-center">
+                    <div class="time">Time</div>
+                </div>
+                <div class="col-sm text-sm-center p-2" *ngFor="let day of weekArr">
+                    <div class="day-date"><small>{{getDateInFormat(day,'MMM Do')}}</small></div>
+                    <div class="day-name" > {{getDateInFormat(day, 'ddd')}} </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row timeslot-grid">
+            <div class="col-sm p-0 text-sm-center">
+                <div [style.height.px]="slotHeight" class="calendar-timeslot border-bottom-0"  *ngFor="let time of timeSlotArray">
+                    <small>{{getDateInFormat(time, 'HH:mm')}}</small>
+                </div>
+            </div>
+            <div class="col-sm p-0 text-sm-center"  *ngFor="let day of weekArr">
+                <ng-container *ngFor="let eventSlot of getEventsByDate(day)">
+                    <div class="event-box secondary-color" [style.top.px]="getTopFromTime(eventSlot.startTime) * minInPx" [style.height.px]="getHeightOfEvent(eventSlot) *minInPx" style="position:absolute;" (click)="editEvent(eventSlot)"> 
+                        <span class="event-box__name">{{eventSlot.title}} </span>
+                    </div>
+                </ng-container>
+                <ng-container *ngFor="let slot of timeSlotArray; let i = index;">
+                    <a href="javascript:void(0)" (click)="openEventEditor(day, slot)">
+                        <div [style.height.px]="slotHeight" class="calendar-timeslot border-bottom-0">
+                            <!--<small>{{getDateInFormat(slot, 'HH:mm')}}</small>-->
+                        </div>
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="isEventEditorVisible">
+    <!--[calEvent]="eventToEdit"-->
+    <event-editor (onHideModal)="isEventEditorVisible = false" [isModalShown]="isEventEditorVisible" [eventDate]="eventTime" (onAddEvent)="onAddEvent($event)" ></event-editor>
+</ng-container>

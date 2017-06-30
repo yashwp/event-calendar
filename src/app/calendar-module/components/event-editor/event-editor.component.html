@@ -1,0 +1,56 @@
+<!--<button type="button" class="btn btn-primary" (click)="showModal()">Render auto-shown modal</button>-->
+<!--fade-->
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Create New Event</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="saveEvent(f)">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-block">
+                        <div class="md-form">
+                            <input type="text" id="form1" class="form-control py-0 mb-0" required #eventName="ngModel" name="event-name" [(ngModel)]="_calEvent.title">
+                            <label for="form3" class="mb-0">Event name</label>
+                            <small [class.hidden-xs-up]="eventName.valid || (eventName.pristine && !f.submitted)" class="erro-msg rounded-bottom">Enter title</small>
+                        </div>
+                    </div>
+
+                    <div class="row px-4">
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <input type="text" id="form2" class="form-control py-0 mb-0" required #startTime="ngModel" name="start-time" [ngModel]="getFormatedDate(_calEvent.startTime, 'HH:mm')">
+                                <label for="form34" class="active mb-0">Start time</label>
+                                <small [class.hidden-xs-up]="startTime.valid || (startTime.pristine && !f.submitted)" class="erro-msg rounded-bottom">Select start time</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <input type="text" id="form3" class="form-control py-0 mb-0" required #endTime="ngModel" name="end-time" [ngModel]="getFormatedDate(_calEvent.endTime, 'HH:mm')">
+                                <label for="form34" class="active mb-0">End time</label>
+                                <small [class.hidden-xs-up]="(endTime.valid || (endTime.pristine && !f.submitted))" class="erro-msg rounded-bottom">Select end time</small>
+                                <!--<small [class.hidden-xs-up]="isTimeBefore(startTime, endTime)" class="erro-msg rounded-bottom">Invalid end time</small>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="md-form">
+                            <textarea type="text" id="form8" class="md-textarea" #description="ngModel" name="description" [(ngModel)]="_calEvent.description"></textarea>
+                            <label for="form8">Event description</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 text-sm-center">
+                    <button href="javascript:void(0)" type="submit" class="btn btn-sm btn-secondary">Save</button>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
