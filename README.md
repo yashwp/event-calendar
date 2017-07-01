@@ -53,7 +53,7 @@ Frameworks and Libraries:-
     - Moment.js
     - jQuery
 
-Future Enchancements
+Future Enhancements
 
 - Editing of event can be done.
 - Routing can be implemented between the 2 views.
