@@ -56,6 +56,7 @@ Frameworks and Libraries:-
 Future Enchancements
 
 - Editing of event can be done.
+- Routing can be implemented between the 2 views.
 - Responsive implementation can done.
 - Recuring event functionalities can be added.
 - Use of ngRx/stores for storing events locally can be done.
