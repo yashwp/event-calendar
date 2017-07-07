@@ -2,6 +2,7 @@
 <div class="row month-calendar__container">
     <div class="col-sm-8">
         <div class="">
+            <!--Month name with navigator to previous and next month-->
             <div class="row p-3 flex flex-items-vcenter white purple-text">
                 <div class="col-sm-1">
                     <span class="fa fa-chevron-left a-cursor-pointer" (click)="gotoLastMonth()"></span>
@@ -35,8 +36,10 @@
     <div class="col-sm-4 secondary-color">
         <div class="row">
             <div class="col-sm-12 a-pad-lr-30 pt-2">
+                <!--Event date-->
                 <h3 class="h3-responsive mb-0 white-text">{{getDateInFormat(selectedDate, 'DD/MM/YYYY')}}</h3>
                 <div class="day-events mt-3 px-0">
+                    <!--Event name with description-->
                     <div class="panel-group mb-1" *ngFor="let eve of getEventsByDate(selectedDate); let i = index">
                         <div class="panel panel-default">
                             <div class="panel-heading">

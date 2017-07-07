@@ -1,5 +1,3 @@
-<!--<button type="button" class="btn btn-primary" (click)="showModal()">Render auto-shown modal</button>-->
-<!--fade-->
 <div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -34,14 +32,13 @@
                                 <input type="text" id="form3" class="form-control py-0 mb-0" required #endTime="ngModel" name="end-time" [ngModel]="getFormatedDate(_calEvent.endTime, 'HH:mm')">
                                 <label for="form34" class="active mb-0">End time</label>
                                 <small [class.hidden-xs-up]="(endTime.valid || (endTime.pristine && !f.submitted))" class="erro-msg rounded-bottom">Select end time</small>
-                                <!--<small [class.hidden-xs-up]="isTimeBefore(startTime, endTime)" class="erro-msg rounded-bottom">Invalid end time</small>-->
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12">
-                        <div class="md-form">
+                        <div class="md-form px-2">
                             <textarea type="text" id="form8" class="md-textarea" #description="ngModel" name="description" [(ngModel)]="_calEvent.description"></textarea>
-                            <label for="form8">Event description</label>
+                            <label for="form8" class="px-2">Event description</label>
                         </div>
                     </div>
                 </div>

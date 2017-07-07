@@ -1,6 +1,7 @@
 <div class="calendar__header">
     <div class="">
         <div class="calendar__header--fixed">
+            <!--Month name with navigator to previous and next month-->
             <div class="row p-3 flex flex-items-vcenter white purple-text">
                 <div class="col-sm-1">
                     <span class="fa fa-chevron-left a-cursor-pointer" (click)="gotoLastWeek()"></span>
@@ -22,7 +23,7 @@
                 </div>
             </div>
         </div>
-        
+        <!--Calendar timeslot grid-->
         <div class="row timeslot-grid">
             <div class="col-sm p-0 text-sm-center">
                 <div [style.height.px]="slotHeight" class="calendar-timeslot a-width-168-xs border-bottom-0"  *ngFor="let time of timeSlotArray">

@@ -83,7 +83,6 @@ padding: 0;
     width: 168px;
 }
 
-
 .lightgrey{
     background-color: #eee;
 }
@@ -107,6 +106,7 @@ padding: 0;
     z-index:99;
 }
 
+/*View navigator btns*/
 .change-view{
     position: fixed;
     top: 0;
@@ -162,10 +162,13 @@ padding: 0;
     color: #666;
 }
 
+/*Event box css*/
+
 .event-box{
     position: absolute;
     border: 1px solid #9933CC;
     width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.16);
 }
 
 .event-box .event-box__name{
@@ -180,15 +183,19 @@ padding: 0;
     transition: opacity 0.2s ease;
     font-size: 12px;
 }
+
 .add-event:hover{
     opacity: 0.9;
 }
+
+/*Form fields styling*/
 
 .erro-msg{
  background-color: red;
  color: white;
  padding: 2px;
 }
+
  input.form-control label.active{
     color: #aa66cc;
  }
