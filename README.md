@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Getting started
 - Clone or fork this repository.
 - Install latest version of [node.js](https://nodejs.org/) .
-- Make sure you have NPM installed, to check open cmd and type npm -v for version checking.
+- Make sure you have NPM installed, to check open cmd and type `npm -v` for version checking.
 - Open the project directory and run command `npm install`.
 
 ## Development server
